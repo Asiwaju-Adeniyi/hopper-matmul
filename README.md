@@ -165,7 +165,6 @@ Results will be recorded as the project progresses.
 
 ## Repository Structure
 
-```text
 hopper-matmul/
 ├── README.md
 ├── CMakeLists.txt
