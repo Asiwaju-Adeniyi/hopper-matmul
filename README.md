@@ -165,6 +165,7 @@ Results will be recorded as the project progresses.
 
 ## Repository Structure
 
+```text
 hopper-matmul/
 ├── README.md
 ├── CMakeLists.txt
@@ -188,6 +189,7 @@ hopper-matmul/
     ├── wgmma.md
     ├── warp_specialization.md
     └── optimization_log.md
+
 
 ## Hardware
 
