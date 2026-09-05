@@ -38,6 +38,10 @@ __device__ void WGcommit() {
     asm volatile("wgmma.commit_group.sync.aligned; \n" ::: "memory");
 }
 
+template <uint N> 
 __device__ void WGwait() {
-    
+    static_assert(N >= 0 && N <= 7, "Wait instruction: N must be between 0 and 7");
+    asm volatile ("wgmma.wait_group.sync.aligned;\n" :: "n"(N) : "memory");
 }
+
+
