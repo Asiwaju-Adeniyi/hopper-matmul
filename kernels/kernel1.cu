@@ -19,7 +19,7 @@ namespace M1 {
 
     __device__ uint64_t smemDescriptor(uint32_t *ptr) {
         uint32_t addr = static_cast<uint32_t>(cvta_generic_to_shared(ptr));
-        uint64_t desc = 0xFFFF;
+        uint64_t desc = 0;
         
         desc |= matrixPropEncoder(addr); //combines the matrix start address to the desciptor 
         desc |= matrixPropEncoder(16) << 16; //The encoded leading-dimension offset is shifted left by 16 so that its descriptor field begins at bit 16
@@ -27,4 +27,17 @@ namespace M1 {
         desc |= 1llu << 62; //sets bits 62 and 63 to 1 and 0 respectively. 
 
     }
+}
+
+
+__device__ void WGfence() {
+    asm volatile ("wgmma.fence.sync.aligned; \n" ::: "memory");
+}
+
+__device__ void WGcommit() {
+    asm volatile("wgmma.commit_group.sync.aligned; \n" ::: "memory");
+}
+
+__device__ void WGwait() {
+    
 }
