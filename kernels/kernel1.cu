@@ -65,3 +65,18 @@ void tmaMAP(CutensorMap *tma_map, bf16* gmem_ptr, int height, int width) {
 
 CUtensorMap *d_tmaMap1 = 0;
 CUtensorMap *d_tmaMap2 = 0;
+
+int _prev_m=0, _prev_n=0, _prev_k=0;
+
+template <int outDim, int reducDim> 
+
+__host__ static inline CUtensormap* allocateAndCreateTensorMap(bf*16 src, int height, int width) {
+    CUtensorMap *tmaMapD; 
+
+    cudaMalloc(&tma_map_d, sizeof(CUtensorMap));
+    CUtensorMap tmaMapHost;
+    tmaMAP<outDim, reducDim>(&tmaMapHost, src, blocks_height, blocks_width);
+    cudaMemcpy(tmaMapD, &tmaMapHost, sizeof(CUtensorMap), cudaMemcpyHostToDevice);
+
+    return tmaMapD;
+}
