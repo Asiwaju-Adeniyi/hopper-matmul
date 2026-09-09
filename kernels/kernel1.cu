@@ -52,7 +52,7 @@ void tmaMAP(CutensorMap *tma_map, bf16* gmem_ptr, int height, int width) {
     uint64_t gmem_shape[5] = {(uint64_t) reducDim * width, (uint64_t outDim * height), 1, 1, 1}; //this is the shape of the whole matrix. 
     uint32_t gmem_stride = {sizeof(bf16), sizeof(bf16) * reducDim * width, 0, 0, 0}; /*basic stride formula or (col, row) is that if threadIdx.x increases by 1 in the x-direction, y increases by number of entries in the x-direction * col's stride*/
     uint32_t smem_shape[5] = {(uint32_t)outDim, (uint32_t reducDim)};
-    uint32_t smem_stride[5] = {1,1,1,1,1};
+    uint32_t smem_stride[5] = {1,1,1,1,1};  
 
         CUresult output = cuTensorMapEncodeTiled(
         tma_map, CU_TENSOR_MAP_DATA_TYPE_BFLOAT16, 2, gmem_address, gmem_shape,
@@ -60,5 +60,8 @@ void tmaMAP(CutensorMap *tma_map, bf16* gmem_ptr, int height, int width) {
         CU_TENSOR_MAP_SWIZZLE_128B, CU_TENSOR_MAP_L2_PROMOTION_NONE, CU_TENSOR_MAP_FLOAT_OOB_FILL_NONE);
 
     assert(output == CUDA_SUCCESS);
-
 }
+
+
+CUtensorMap *tmaMap1 = 0;
+CUtensorMap *tmaMap2 = 0;
