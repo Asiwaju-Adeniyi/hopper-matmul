@@ -63,5 +63,5 @@ void tmaMAP(CutensorMap *tma_map, bf16* gmem_ptr, int height, int width) {
 }
 
 
-CUtensorMap *tmaMap1 = 0;
-CUtensorMap *tmaMap2 = 0;
+CUtensorMap *d_tmaMap1 = 0;
+CUtensorMap *d_tmaMap2 = 0;
