@@ -17,7 +17,7 @@ namespace M1 {
 
     __device__ static inline uint64_t matrixPropEncoder(uint64_t x) {return (((x) & 0x3FFFF)) >> 0x4;} /*TTake the lowest 18 bits of x, then discard the lowest 4 of those bits by shifting right 4 positions.*/
 
-    __device__ uint64_t smemDescriptor(uint32_t *ptr) {
+    __device__ uint64_t smemDescriptor(bf16 *ptr) {
         uint32_t addr = static_cast<uint32_t>(cvta_generic_to_shared(ptr));
         uint64_t desc = 0;
         
