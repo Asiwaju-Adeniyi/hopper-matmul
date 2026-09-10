@@ -26,6 +26,8 @@ namespace M1 {
         desc |= matrixPropEncoder(1024) << 32; //combines the stride dimension bytes offset from bit 32
         desc |= 1llu << 62; //sets bits 62 and 63 to 1 and 0 respectively. 
 
+        return desc;
+
     }
 }
 
