@@ -10,7 +10,7 @@
 #include <cooperative_groups.h>
 #include <cuda/barrier>
 
-#define barrier  cuda::barrier<cuda::thread_scope_block>
+#define barrier cuda::barrier<cuda::thread_scope_block>
 
 namespace M1 {
     namespace cde = cuda::device::experimental;
@@ -30,7 +30,6 @@ namespace M1 {
 
     }
 }
-
 
 __device__ void WGfence() {
     asm volatile ("wgmma.fence.sync.aligned; \n" ::: "memory");
@@ -107,3 +106,7 @@ __device__ void wgmma64(float d[4][8], bf16* sA, bf16* sB) {
         : "l"(desc_a), "l"(desc_b), "n"(int32_t(ScaleD)), "n"(int32_t(ScaleA)),
           "n"(int32_t(ScaleB)), "n"(int32_t(TransA)), "n"(int32_t(TransB)));
 }
+
+
+
+
